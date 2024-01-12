@@ -1,5 +1,6 @@
 package com.example.geradorback.domain.user;
 
+import com.example.geradorback.domain.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

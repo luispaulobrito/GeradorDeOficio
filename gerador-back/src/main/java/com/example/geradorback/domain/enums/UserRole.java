@@ -1,4 +1,4 @@
-package com.example.geradorback.domain.user;
+package com.example.geradorback.domain.enums;
 
 public enum UserRole {
     ADMIN("admin"),

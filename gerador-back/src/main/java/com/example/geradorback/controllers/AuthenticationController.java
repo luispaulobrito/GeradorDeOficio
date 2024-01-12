@@ -1,8 +1,10 @@
 package com.example.geradorback.controllers;
 
-import com.example.geradorback.domain.user.AuthenticationDTO;
-import com.example.geradorback.domain.user.RegisterDTO;
+import com.example.geradorback.domain.records.AuthenticationDTO;
+import com.example.geradorback.domain.records.LoginResponseDTO;
+import com.example.geradorback.domain.records.RegisterDTO;
 import com.example.geradorback.domain.user.User;
+import com.example.geradorback.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,14 +22,19 @@ import com.example.geradorback.repositories.UserRepository;
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
+
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Validated AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
