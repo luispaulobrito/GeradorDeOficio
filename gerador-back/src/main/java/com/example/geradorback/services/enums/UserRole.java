@@ -1,4 +1,4 @@
-package com.example.geradorback.domain.enums;
+package com.example.geradorback.services.enums;
 
 public enum UserRole {
     ADMIN("admin"),
@@ -6,11 +6,11 @@ public enum UserRole {
 
     private String role;
 
-    UserRole(String role) {
+    UserRole(String role){
         this.role = role;
     }
 
-    public String getRole() {
+    public String getRole(){
         return role;
     }
 }

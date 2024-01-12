@@ -1,9 +1,9 @@
 package com.example.geradorback.controllers;
 
-import com.example.geradorback.domain.records.AuthenticationDTO;
-import com.example.geradorback.domain.records.LoginResponseDTO;
-import com.example.geradorback.domain.records.RegisterDTO;
-import com.example.geradorback.domain.user.User;
+import com.example.geradorback.services.records.AuthenticationDTO;
+import com.example.geradorback.services.records.LoginResponseDTO;
+import com.example.geradorback.services.records.RegisterDTO;
+import com.example.geradorback.domain.User;
 import com.example.geradorback.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
