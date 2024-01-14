@@ -89,5 +89,13 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: $primary-100;
-  color: white;
+  color: black;
+}
+
+:root{
+  
+  //inputs
+  .mdc-text-field--outlined {
+    --mdc-outlined-text-field-container-shape: 0;
+  }
 }
