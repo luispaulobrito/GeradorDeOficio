@@ -1,0 +1,93 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+@import "./colors.scss";
+
+$primary-palette: (
+  100: $primary-100,
+  300: $primary-300,
+  500: $primary-500,
+  700: $primary-700,
+  900: $primary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$accent-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$warn-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$danger-palette: (
+  100: $secondary-100,
+  300: $secondary-300,
+  500: $secondary-500,
+  700: $secondary-700,
+  900: $secondary-900,
+  contrast: (
+    100: $white,
+    300: $white,
+    500: $white,
+    700: $white,
+    900: $white,
+  ),
+);
+
+$primary-theme: mat.define-palette($primary-palette, 500);
+$accent-theme: mat.define-palette($accent-palette, 500);
+$warn-theme: mat.define-palette($danger-palette, 500);
+
+$system-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary-theme,
+      accent: $accent-theme,
+      warn: $warn-theme,
+    ),
+  )
+);
+
+@include mat.all-component-themes($system-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $primary-100;
+  color: white;
+}
