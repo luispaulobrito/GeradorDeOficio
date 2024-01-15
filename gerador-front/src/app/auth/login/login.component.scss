@@ -1,4 +1,5 @@
 @import "../../theme/styles/theme.scss";
+@import "../../theme/styles/mixins.scss";
 
 .login-container {
   display: flex;
@@ -15,6 +16,10 @@
   width: 40%;
   padding: 2rem;
   background-color: $white;
+  
+  @include responsive(sm) {
+    width: 80%;
+  }
 }
 
 .login-title {  
@@ -36,7 +41,9 @@
     border-radius: 0;
 }
 
-// mat-mdc-form-field email-input ng-tns-c1205077789-0 mat-mdc-form-field-type-mat-input mat-form-field-appearance-outline mat-form-field-hide-placeholder mat-primary ng-star-inserted
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+  padding-left: 16px;
+}
 
 ::ng-deep .mdc-checkbox {
   padding-left: 0 !important;
