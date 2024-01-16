@@ -3,7 +3,7 @@
     <div class="login-title-container">
         <h1 class="login-title">Login</h1>
     </div>
-    <form class="input-section">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-section">
       <mat-form-field appearance="outline" class="email-input">
         <mat-label>E-mail</mat-label>
         <input type="email" matInput formControlName="email" />
@@ -12,6 +12,7 @@
         <mat-label>Senha</mat-label>
         <input type="password" matInput formControlName="password" />
       </mat-form-field>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       <div class="login-section">
         <mat-checkbox formControlName="isRememberEnabled" class="checkbox"
           >Lembrar de mim</mat-checkbox
