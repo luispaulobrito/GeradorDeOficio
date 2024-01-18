@@ -23,14 +23,14 @@ public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+
     public RegisterDTO saveUser(RegisterDTO registerDTO) throws NegocioException {
         if (Objects.nonNull(userRepository.findByLogin(registerDTO.login()))) {
             throw new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.USUARIO_EXISTE);
         }
 
-        String encryptedPassword = new BCryptPasswordEncoder().encode(registerDTO.password());
         User user = userMapper.toEntity(registerDTO);
-        user.setPassword(encryptedPassword);
+        user.setPassword(new BCryptPasswordEncoder().encode(registerDTO.password()));
         user = userRepository.save(user);
         return userMapper.toDto(user);
     }

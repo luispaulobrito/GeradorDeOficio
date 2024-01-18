@@ -18,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterDTO> register(@RequestBody @Validated RegisterDTO registerDTO){
+    public ResponseEntity<Void> register(@RequestBody @Validated RegisterDTO registerDTO){
         userService.saveUser(registerDTO);
         return ResponseEntity.ok().build();
     }
