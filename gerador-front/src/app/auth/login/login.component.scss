@@ -79,6 +79,10 @@
   color: $white;
 }
 
+.mat-mdc-unelevated-button.mat-mdc-button-base {
+  padding: 0 !important;
+}
+
 .forgot-password {
   color: $secondary-500;
 }

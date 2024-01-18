@@ -1,16 +1,25 @@
 <div class="login-container">
   <div class="login-wrapper">
     <div class="login-title-container">
-        <h1 class="login-title">Login</h1>
+      <h1 class="login-title">Login</h1>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-section">
       <mat-form-field appearance="outline" class="email-input">
         <mat-label>E-mail</mat-label>
         <input type="email" matInput formControlName="email" />
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          E-mail é obrigatório
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')"
+          >E-mail incorreto</mat-error
+        >
       </mat-form-field>
       <mat-form-field appearance="outline" class="password-input">
         <mat-label>Senha</mat-label>
         <input type="password" matInput formControlName="password" />
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+          >Senha é obrigatória</mat-error
+        >
       </mat-form-field>
       <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       <div class="login-section">
@@ -19,7 +28,7 @@
         >
       </div>
       <div class="button-section">
-        <button mat-flat-button class="btn-enter" type="submit">Entrar</button>
+        <button mat-flat-button class="btn-enter" type="submit" [disabled]="!loginForm.valid">Entrar</button>
       </div>
     </form>
     <div class="forgot-password-container">

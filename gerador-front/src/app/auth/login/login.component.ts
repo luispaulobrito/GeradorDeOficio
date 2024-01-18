@@ -23,7 +23,10 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/),
+      ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
