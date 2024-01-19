@@ -24,7 +24,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [
+      login: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/),
       ]),
@@ -45,12 +45,12 @@ export class LoginComponent {
         const storageType = this.loginForm.get('isRememberEnabled')?.value
         ? EnumStorageType.LOCAL
         : EnumStorageType.SESSION;
-        this.storageService.setItem('token', response.data.token, storageType);
+        this.storageService.setItem('token', response.token, storageType);
         this.router.navigate(['/pages']);
       },
       (error) => {
         this.errorMessage = 
-          error.error && error.error.data && error.error.data.message
+          error.error && error.error.data && error.error.message
             ? error.error.data.message
             : error.error && error.error.message
             ? error.error.message

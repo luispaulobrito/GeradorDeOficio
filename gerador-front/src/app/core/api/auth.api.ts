@@ -13,9 +13,9 @@ export class AuthAPI extends BaseAPI {
   constructor(
     protected override httpClient: HttpClient,
     protected override storageService: StorageService
-    ) {
+  ) {
     super(httpClient, storageService);
-    this.apiUrl += '/login';
+    this.apiUrl += '/auth/login';
   }
 
   /**

@@ -6,11 +6,11 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-section">
       <mat-form-field appearance="outline" class="email-input">
         <mat-label>E-mail</mat-label>
-        <input type="email" matInput formControlName="email" />
-        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+        <input type="email" matInput formControlName="login" />
+        <mat-error *ngIf="loginForm.get('login')?.hasError('required')">
           E-mail é obrigatório
         </mat-error>
-        <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')"
+        <mat-error *ngIf="loginForm.get('login')?.hasError('pattern')"
           >E-mail incorreto</mat-error
         >
       </mat-form-field>
