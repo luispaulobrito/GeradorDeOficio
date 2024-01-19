@@ -13,6 +13,7 @@ import { AuthAPI } from 'src/app/core/api/auth.api';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  public hide = true;
   public loginForm: FormGroup;
   public errorMessage?: string;
 

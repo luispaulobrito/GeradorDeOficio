@@ -65,24 +65,27 @@
   width: 100%;
 }
 
-::ng-deep .mat-mdc-button-touch-target {
+.button-section .btn-enter{
   background-color: $secondary-100;
   width: 100%;
+  color: $white;
+  border-radius: 0;
+  height: 3rem;
+  padding: 0;
 }
 
-::ng-deep .mat-mdc-button-touch-target:hover {
+.button-section .btn-enter:hover{
   background-color: $secondary-300;
   transition: ease-in-out 0.3s;
 }
 
-::ng-deep .mdc-button__label{
-  color: $white;
-}
-
-.mat-mdc-unelevated-button.mat-mdc-button-base {
-  padding: 0 !important;
-}
-
 .forgot-password {
   color: $secondary-500;
+}
+
+.outline-btn {
+  border: none;
+  background: transparent; 
+  color: $secondary-100;
+  padding: 10px;
 }

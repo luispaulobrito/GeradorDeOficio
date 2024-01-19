@@ -16,7 +16,18 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="password-input">
         <mat-label>Senha</mat-label>
-        <input type="password" matInput formControlName="password" />
+        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          class="outline-btn"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
         <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
           >Senha é obrigatória</mat-error
         >
