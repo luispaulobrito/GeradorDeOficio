@@ -28,7 +28,7 @@ public class AuthenticationController {
     public ResponseEntity login(@RequestBody @Validated AuthenticationDTO data){
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         Authentication auth = this.authenticationManager.authenticate(usernamePassword);
-        String token = tokenService.generateToken((User) auth.getPrincipal());
+        String token = tokenService.generateToken((User) auth.getPrincipal(), data.isRememberEnabled());
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 }

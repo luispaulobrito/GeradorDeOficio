@@ -10,21 +10,27 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.util.Date;
 
 @Service
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String generateToken(User user){
+    @Value("${api.security.token.expiration-short}")
+    private int expirationShort;
+
+    @Value("${api.security.token.expiration-long}")
+    private int expirationLong;
+
+    public String generateToken(User user, boolean rememberMe){
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
+            int expirationHours = rememberMe ? expirationLong : expirationShort;
             String token = JWT.create()
                     .withIssuer("auth-api")
                     .withSubject(user.getLogin())
-                    .withExpiresAt(genExpirationDate())
+                    .withExpiresAt(genExpirationDate(expirationHours))
                     .sign(algorithm);
             return token;
         }catch (JWTCreationException exception){
@@ -45,7 +51,7 @@ public class TokenService {
         }
     }
 
-    private Instant genExpirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    private Date genExpirationDate(int expirationHours) {
+        return Date.from(Instant.now().plusSeconds(expirationHours * 3600));
     }
 }
