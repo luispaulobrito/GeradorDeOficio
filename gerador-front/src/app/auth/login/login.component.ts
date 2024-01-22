@@ -10,7 +10,7 @@ import { AuthAPI } from 'src/app/core/api/auth.api';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   public hide = true;
@@ -35,24 +35,21 @@ export class LoginComponent {
       isRememberEnabled: new FormControl(false),
     });
   }
-  
+
   public login(): void {
     this.loaderService.setLoading(true);
-  
+
     this.authAPI.login(this.loginForm.value).subscribe(
-      
       (response: IResponseLogin) => {
         const storageType = this.loginForm.get('isRememberEnabled')?.value
-        ? EnumStorageType.LOCAL
-        : EnumStorageType.SESSION;
+          ? EnumStorageType.LOCAL
+          : EnumStorageType.SESSION;
         this.storageService.setItem('token', response.token, storageType);
         this.router.navigate(['/pages']);
       },
       (error) => {
-        this.errorMessage = 
-          error.error && error.error.data && error.error.message
-            ? error.error.data.message
-            : error.error && error.error.message
+        this.errorMessage =
+          error.error && error.error.message
             ? error.error.message
             : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.';
       },
