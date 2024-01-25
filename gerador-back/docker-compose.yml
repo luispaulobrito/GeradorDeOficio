@@ -3,12 +3,12 @@ version: '3'
 
 services:
   db:
-    container_name: postgres
+    container_name: oficiosememorandos
     image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: postgres
+      POSTGRES_DB: products
     volumes:
       - db:/var/lib/postgresql/data
     ports:

@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="login-wrapper">
+    <div class="login-title-container">
+      <h1 class="login-title">Login</h1>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="input-section">
+      <mat-form-field appearance="outline" class="email-input">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput formControlName="login" />
+        <mat-error *ngIf="loginForm.get('login')?.hasError('required')">
+          E-mail é obrigatório
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('login')?.hasError('pattern')"
+          >E-mail incorreto</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="password-input">
+        <mat-label>Senha</mat-label>
+        <input [type]="hide ? 'password' : 'text'" matInput formControlName="password" />
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          class="outline-btn"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+          >Senha é obrigatória</mat-error
+        >
+      </mat-form-field>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <div class="login-section">
+        <mat-checkbox formControlName="isRememberEnabled" class="checkbox"
+          >Lembrar de mim</mat-checkbox
+        >
+      </div>
+      <div class="button-section">
+        <button mat-flat-button class="btn-enter" type="submit">Entrar</button>
+      </div>
+    </form>
+    <div class="forgot-password-container">
+      <a class="forgot-password">Esqueceu a senha?</a>
+    </div>
+  </div>
+</div>
