@@ -44,6 +44,10 @@ export class LoginComponent {
    * - Exibe uma mensagem de erro em caso de falha.
    */
   public login(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    
     this.loaderService.setLoading(true);
 
     this.authAPI
