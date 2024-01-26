@@ -49,7 +49,7 @@ export class LoginComponent {
     }
     
     this.loaderService.setLoading(true);
-
+    this.storageService.removeItem('token');  
     this.authAPI
       .login(this.loginForm.value)
       .pipe(
