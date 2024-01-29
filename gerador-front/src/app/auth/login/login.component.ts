@@ -7,6 +7,7 @@ import { IResponseLogin } from 'src/app/core/models/IResponseLogin';
 import { Router } from '@angular/router';
 import { AuthAPI } from 'src/app/core/api/auth.api';
 import { finalize } from 'rxjs';
+import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authAPI: AuthAPI,
     private loaderService: LoaderService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private emailService: EmailService,
   ) {
     this.loginForm = new FormGroup({
       login: new FormControl('', [
@@ -72,5 +74,16 @@ export class LoginComponent {
               : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.';
         }
       );
+  }
+
+  /**
+   * Método chamado quando o usuário clica em "Esqueceu a senha?".
+   * - Obtém o valor do campo de e-mail do formulário.
+   * - Armazena o valor do e-mail no serviço EmailService para uso posterior.
+   * - Navega para a rota '/auth/password-forgot' para permitir a redefinição da senha.
+   */
+  public forgotPassword(): void {
+    this.emailService.setEmail(this.loginForm.get('login')?.value);
+    this.router.navigate(['/auth/password-forgot']);
   }
 }
