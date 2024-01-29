@@ -8,6 +8,7 @@ import { SpinnerComponent } from './theme/components/spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DialogComponent } from './theme/components/dialog/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
