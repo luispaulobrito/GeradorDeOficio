@@ -9,11 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    PasswordForgotComponent
   ],
   imports: [
     CommonModule,

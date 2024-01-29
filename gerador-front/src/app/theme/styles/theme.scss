@@ -98,4 +98,8 @@ body {
   .mdc-text-field--outlined {
     --mdc-outlined-text-field-container-shape: 0;
   }
+
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-left: 16px;
+  }
 }
