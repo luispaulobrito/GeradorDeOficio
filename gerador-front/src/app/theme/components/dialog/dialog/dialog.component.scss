@@ -1,0 +1,99 @@
+@import "../../styles/theme.scss";
+@import "../../styles/mixins.scss";
+
+.container-dialog {
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22.5rem;
+  padding: 46px 52px;
+
+  @include responsive(sm) {
+    padding: 0;
+    width: 100%;
+    margin: 130px 0;
+  }
+}
+.wrapper-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  @include responsive(sm) {
+    width: 90%;
+  }
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.check-success {
+  width: 100px;
+  height: 100px;
+
+  @include responsive(sm) {
+    width: 40%;
+    height: 40%;
+  }
+}
+
+.icon-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.icon-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+p {
+  color: var(--foundation-gray-scale-black, #020204);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: none;
+  margin: 0;
+}
+
+mat-stroked-button {
+  background-color: $white;
+  color: $black;
+  border: solid $black 1px;
+  padding: 10px 8px;
+}
+
+::ng-deep.mdc-button__label {
+  color: $black;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  margin: 20px 72px;
+
+  @include responsive(sm) {
+    margin: 20px 60px;
+  }
+}
