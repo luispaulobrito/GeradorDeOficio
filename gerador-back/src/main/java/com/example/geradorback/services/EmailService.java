@@ -33,7 +33,7 @@ public class EmailService {
                     + "<h1>Recuperação de senha</h1>"
                     + "<p>Olá, tudo bem?</p>"
                     + "<p>Você solicitou a redefinição de senha do e-mail cadastrado em nosso sistema. Clique no link abaixo para prosseguir:</p>"
-                    + "<p style='background-color: #24a0ed; padding: 10px; color: white; border-radius: 5px; display: inline-block;'><a href='http://localhost:8080/reset/"
+                    + "<p style='background-color: #24a0ed; padding: 10px; color: white; border-radius: 5px; display: inline-block;'><a href='http://localhost:4200/auth/new-password/"
                     + recipient + "/"
                     + token + "' style='color: white; text-decoration: none;'>Redefinir senha</a></p>"
                     + "</body>"
@@ -43,11 +43,9 @@ public class EmailService {
 
             javaMailSender.send(message);
 
-            // Registra uma mensagem de informação no Log4j.
             logger.info("E-mail de redefinição de senha enviado para: {}", recipient);
 
         } catch (MessagingException e) {
-            // Registra uma mensagem de erro no Log4j.
             logger.error("Erro ao enviar e-mail de redefinição de senha para: {}", recipient, e);
         }
     }
