@@ -19,7 +19,7 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendPasswordResetEmail(String recipient, String token) {
+    public void sendPasswordResetEmail(String id, String recipient, String token) {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -34,7 +34,7 @@ public class EmailService {
                     + "<p>Olá, tudo bem?</p>"
                     + "<p>Você solicitou a redefinição de senha do e-mail cadastrado em nosso sistema. Clique no link abaixo para prosseguir:</p>"
                     + "<p style='background-color: #24a0ed; padding: 10px; color: white; border-radius: 5px; display: inline-block;'><a href='http://localhost:4200/auth/new-password/"
-                    + recipient + "/"
+                    + id + "/"
                     + token + "' style='color: white; text-decoration: none;'>Redefinir senha</a></p>"
                     + "</body>"
                     + "</html>";
