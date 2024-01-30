@@ -19,7 +19,7 @@ public class PasswordResetToken {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Column(nullable = false, unique = true)
@@ -29,9 +29,11 @@ public class PasswordResetToken {
 
     private boolean utilized;
 
-    public PasswordResetToken() {
+    public PasswordResetToken() {}
+    public PasswordResetToken(User user) {
+        this.user = user;
         this.token = UUID.randomUUID().toString();
-        this.expiryDate = LocalDateTime.now().plusHours(24);
+        this.expiryDate = LocalDateTime.now().plusHours(1);
         this.utilized = false;
     }
 
