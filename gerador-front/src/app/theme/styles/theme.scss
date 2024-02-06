@@ -3,6 +3,7 @@
 @include mat.core();
 
 @import "./colors.scss";
+@import "./mixins.scss";
 
 $primary-palette: (
   100: $primary-100,
@@ -90,16 +91,26 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: $primary-100;
   color: black;
+  @include responsive(sm) {
+    background-color: $white;
+  }
 }
 
-:root{
-  
+:root {
   //inputs
   .mdc-text-field--outlined {
     --mdc-outlined-text-field-container-shape: 0;
   }
 
-  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+    .mat-mdc-form-field-infix {
     padding-left: 16px;
+  }
+
+  .mat-mdc-form-field:not(.mat-form-field-disabled)
+    .mat-mdc-floating-label.mdc-floating-label {
+    @include responsive(sm) {
+      font-size: 14px;
+    }
   }
 }
