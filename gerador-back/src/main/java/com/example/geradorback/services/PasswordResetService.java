@@ -68,7 +68,7 @@ public class PasswordResetService {
                 return true;
             }
         }
-        logger.warn("Falha ao redefinir a senha. Token inválido ou expirado.");
+        logger.warn("Falha ao redefinir a senha.");
         return false;
     }
 
