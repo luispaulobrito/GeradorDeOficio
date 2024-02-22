@@ -103,9 +103,12 @@
   height: 2px;
   background-color: $white;
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   transition: 0.5s ease-in-out;
+  @include responsive(sm) {
+    bottom: 0;
+  }
 }
 
 .menu-link:hover::after {

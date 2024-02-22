@@ -63,7 +63,7 @@ export class LoginComponent {
             ? EnumStorageType.LOCAL
             : EnumStorageType.SESSION;
           this.storageService.setItem('token', response.token, storageType);
-          this.router.navigate(['/pages']);
+          this.router.navigate(['/pages/home']);
         },
         (error) => {
           this.errorMessage =
