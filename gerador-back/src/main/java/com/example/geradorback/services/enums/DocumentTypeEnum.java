@@ -5,8 +5,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum DocumentTypeEnum {
-    OF("OFFICIAL LETTER"),
-    MEMO("MEMORANDUM");
+    OL("OFFICIAL LETTER"),
+    M("MEMORANDUM");
 
     private String value;
 }
