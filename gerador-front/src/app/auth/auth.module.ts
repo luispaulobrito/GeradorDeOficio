@@ -9,21 +9,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    PasswordForgotComponent,
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
+    NewPasswordComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
 export class AuthModule { }
