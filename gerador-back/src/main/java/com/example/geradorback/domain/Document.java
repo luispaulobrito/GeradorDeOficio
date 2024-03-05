@@ -24,7 +24,7 @@ public class Document {
     private DocumentTypeEnum documentTypeEnum;
 
     @Column(name = "data", nullable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
 
     @Column(name = "sender", nullable = false, length = 100)
@@ -47,4 +47,7 @@ public class Document {
 
     @Column(name = "document_number", nullable = false)
     private Long documentNumber;
+
+    @Column(name = "document_year", nullable = false)
+    private Integer documentYear;
 }

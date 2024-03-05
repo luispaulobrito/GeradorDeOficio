@@ -1,0 +1,26 @@
+package com.example.geradorback.services.dto;
+
+import com.example.geradorback.services.enums.DocumentTypeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class DocumentDTO {
+    private DocumentTypeEnum documentTypeEnum;
+    private LocalDate data;
+    private String sender;
+    private String senderTitle;
+    private String recipient;
+    private String recipientTitle;
+    private String subject;
+    private String text;
+    private Long documentNumber;
+    private Integer documentYear;
+}
