@@ -1,4 +1,4 @@
-package com.example.geradorback.services.records;
+package com.example.geradorback.services.dto;
 
 public record LoginResponseDTO(String token) {
 }

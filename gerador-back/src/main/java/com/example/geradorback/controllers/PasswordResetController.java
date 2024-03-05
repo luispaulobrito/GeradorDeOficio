@@ -2,8 +2,8 @@ package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.PasswordResetService;
 import com.example.geradorback.services.error.ConstantesUtil;
-import com.example.geradorback.services.records.RequestPasswordDTO;
-import com.example.geradorback.services.records.ResetPasswordRequestDTO;
+import com.example.geradorback.services.dto.RequestPasswordDTO;
+import com.example.geradorback.services.dto.ResetPasswordRequestDTO;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController

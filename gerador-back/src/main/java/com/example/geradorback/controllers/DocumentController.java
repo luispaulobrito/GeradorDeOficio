@@ -2,7 +2,7 @@ package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.DocumentService;
 import com.example.geradorback.services.error.NegocioException;
-import com.example.geradorback.services.records.DocumentDTO;
+import com.example.geradorback.services.dto.DocumentDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -5,7 +5,7 @@ import com.example.geradorback.repositories.UserRepository;
 import com.example.geradorback.services.error.ConstantesUtil;
 import com.example.geradorback.services.error.NegocioException;
 import com.example.geradorback.services.mapper.UserMapper;
-import com.example.geradorback.services.records.RegisterDTO;
+import com.example.geradorback.services.dto.RegisterDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

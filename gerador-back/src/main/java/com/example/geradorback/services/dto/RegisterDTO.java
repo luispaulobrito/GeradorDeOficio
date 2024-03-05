@@ -1,4 +1,4 @@
-package com.example.geradorback.services.records;
+package com.example.geradorback.services.dto;
 
 import com.example.geradorback.services.enums.UserRole;
 

@@ -1,7 +1,7 @@
 package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.UserService;
-import com.example.geradorback.services.records.RegisterDTO;
+import com.example.geradorback.services.dto.RegisterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
