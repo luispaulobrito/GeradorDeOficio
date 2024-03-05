@@ -1,6 +1,7 @@
 package com.example.geradorback.services.dto;
 
 import com.example.geradorback.services.enums.DocumentTypeEnum;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,8 @@ public class DocumentDTO {
     private String recipientTitle;
     private String subject;
     private String text;
+    @Hidden
     private Long documentNumber;
+    @Hidden
     private Integer documentYear;
 }
