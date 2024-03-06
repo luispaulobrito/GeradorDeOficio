@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "document")
 @Entity(name = "document")
@@ -23,9 +24,9 @@ public class Document {
     @Enumerated(EnumType.STRING)
     private DocumentTypeEnum documentTypeEnum;
 
-    @Column(name = "data", nullable = false)
+    @Column(name = "document_date", nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate data;
+    private LocalDate documentDate;
 
     @Column(name = "sender", nullable = false, length = 100)
     private String sender;
@@ -50,4 +51,14 @@ public class Document {
 
     @Column(name = "document_year", nullable = false)
     private Integer documentYear;
+
+    @Column(name = "user_id", nullable = false)
+    private String userId;
+
+    @Column(name = "creation_date", nullable = false)
+    private LocalDateTime creationDate;
+    @PrePersist
+    protected void onCreate() {
+        creationDate = LocalDateTime.now();
+    }
 }

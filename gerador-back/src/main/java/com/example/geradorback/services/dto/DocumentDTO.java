@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class DocumentDTO {
     private DocumentTypeEnum documentTypeEnum;
-    private LocalDate data;
+    private LocalDate documentDate;
     private String sender;
     private String senderTitle;
     private String recipient;
@@ -26,4 +26,8 @@ public class DocumentDTO {
     private Long documentNumber;
     @Hidden
     private Integer documentYear;
+    @Hidden
+    private String userId;
+    @Hidden
+    private LocalDate creationDate;
 }
