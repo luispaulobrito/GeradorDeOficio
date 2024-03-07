@@ -4,7 +4,6 @@ import com.example.geradorback.domain.PasswordResetToken;
 import com.example.geradorback.domain.User;
 import com.example.geradorback.repositories.PasswordResetTokenRepository;
 import com.example.geradorback.repositories.UserRepository;
-import jakarta.mail.MessagingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class PasswordResetService {
 
     private static final Logger logger = LogManager.getLogger(PasswordResetService.class);
 
-    public boolean initiatePasswordReset(String login) throws MessagingException {
+    public boolean initiatePasswordReset(String login) {
         logger.info("Buscando usuário: {}", login);
         User user = userRepository.findByLogin(login);
         if (Objects.isNull(user)) {
