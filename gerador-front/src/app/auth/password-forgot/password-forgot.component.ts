@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { ForgotPasswordAPI } from 'src/app/core/api/forgot-password.api';
+import { MessageConstants } from 'src/app/core/constants/message.constants';
 import { EmailService } from 'src/app/core/services/email.service';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { ModalService } from 'src/app/core/services/modal.service';
@@ -64,15 +65,15 @@ export class PasswordForgotComponent implements OnInit {
       .subscribe(
         () => {
           this.modalService.showDialog({
-            title: 'Sucesso',
-            message: 'Seu e-mail cadastrado receberá em breve instruções para redefinir a senha.',
+            title: MessageConstants.SUCCESS_TITLE,
+            message: MessageConstants.SUCCESS_MESSAGE_INSTRUCTIONS_SENT,
             feedback: 'success',
           });
         },
         () => {
           this.modalService.showDialog({
-            title: 'Falha!',
-            message: 'Ocorreu um erro na comunicação com o servidor. Tente novamente.',
+            title: MessageConstants.ERROR_TITLE,
+            message: MessageConstants.ERROR_MESSAGE,
             feedback: 'error',
           });
         }
