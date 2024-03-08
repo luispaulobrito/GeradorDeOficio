@@ -32,7 +32,7 @@ public class PasswordResetService {
             return false;
         }
         PasswordResetToken token = new PasswordResetToken();
-        emailService.sendPasswordResetEmail(user.getLogin(), token.getToken());
+        emailService.sendPasswordResetEmail(user.getId(), user.getLogin(), token.getToken());
         tokenRepository.save(token);
         logger.info("E-mail de redefinição de senha iniciado para o usuário: {}", login);
         return true;
