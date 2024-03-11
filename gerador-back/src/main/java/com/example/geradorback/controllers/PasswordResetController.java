@@ -23,7 +23,7 @@ public class PasswordResetController {
 
     @PostMapping("/forgot")
     public ResponseEntity<Boolean> initiatePasswordReset(@RequestBody @Validated RequestPasswordDTO requestPasswordDTO) throws MessagingException {
-        passwordResetService.initiatePasswordReset(requestPasswordDTO.login());
+        passwordResetService.initiatePasswordReset(requestPasswordDTO);
         return ResponseEntity.ok().build();
     }
 

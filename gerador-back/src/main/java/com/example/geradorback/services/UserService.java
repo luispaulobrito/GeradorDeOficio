@@ -6,8 +6,11 @@ import com.example.geradorback.services.error.ConstantesUtil;
 import com.example.geradorback.services.error.NegocioException;
 import com.example.geradorback.services.mapper.UserMapper;
 import com.example.geradorback.services.records.RegisterDTO;
+import com.example.geradorback.services.records.RequestPasswordDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,8 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
+    private static final Logger logger = LogManager.getLogger(PasswordResetService.class);
+
     public RegisterDTO saveUser(RegisterDTO registerDTO) throws NegocioException {
         if (Objects.nonNull(userRepository.findByLogin(registerDTO.login()))) {
             throw new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.USUARIO_EXISTE);
@@ -32,6 +37,11 @@ public class UserService {
         User user = userMapper.toEntity(registerDTO);
         user.setPassword(new BCryptPasswordEncoder().encode(registerDTO.password()));
         user = userRepository.save(user);
+        return userMapper.toDto(user);
+    }
+
+    public RegisterDTO findByLogin(RequestPasswordDTO requestPasswordDTO) {
+        User user = userRepository.findByLogin(requestPasswordDTO.login());
         return userMapper.toDto(user);
     }
 }

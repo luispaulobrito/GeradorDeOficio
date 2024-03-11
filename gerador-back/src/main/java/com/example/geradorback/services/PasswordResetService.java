@@ -3,8 +3,9 @@ package com.example.geradorback.services;
 import com.example.geradorback.domain.PasswordResetToken;
 import com.example.geradorback.domain.User;
 import com.example.geradorback.repositories.PasswordResetTokenRepository;
-import com.example.geradorback.repositories.UserRepository;
-import jakarta.mail.MessagingException;
+import com.example.geradorback.services.mapper.UserMapper;
+import com.example.geradorback.services.records.RegisterDTO;
+import com.example.geradorback.services.records.RequestPasswordDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.Objects;
 public class PasswordResetService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private PasswordResetTokenRepository tokenRepository;
@@ -26,16 +27,20 @@ public class PasswordResetService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private UserMapper userMapper;
+
     private static final Logger logger = LogManager.getLogger(PasswordResetService.class);
 
-    public boolean initiatePasswordReset(String login) throws MessagingException {
-        logger.info("Buscando usuário: {}", login);
-        User user = userRepository.findByLogin(login);
-        if (Objects.isNull(user)) {
+    public boolean initiatePasswordReset(RequestPasswordDTO requestPasswordDTO) {
+        logger.info("Buscando usuário: {}", requestPasswordDTO.login());
+        RegisterDTO registerDTO = userService.findByLogin(requestPasswordDTO);
+        if (Objects.isNull(registerDTO)) {
             return false;
         }
-        PasswordResetToken token = new PasswordResetToken(user);
-        logger.info("E-mail de redefinição de senha iniciado para o usuário: {}", login);
+        User user = userMapper.toEntity(registerDTO);
+        PasswordResetToken token = new PasswordResetToken();
+        logger.info("E-mail de redefinição de senha iniciado para o usuário: {}", requestPasswordDTO.login());
         emailService.sendPasswordResetEmail(user.getId(), user.getLogin(), token.getToken());
         tokenRepository.save(token);
         return true;
