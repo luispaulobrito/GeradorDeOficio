@@ -128,9 +128,7 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
   private loadScreen(): void {
     this.loaderService.setLoading(true);
 
-    of(null)
-      .pipe(
-        switchMap(() => this.resetPassApi.tokenVerify(this.userId, this.token)),
+    this.resetPassApi.tokenVerify(this.userId, this.token).pipe(
         catchError((error) => {
           return throwError(error);
         }),
