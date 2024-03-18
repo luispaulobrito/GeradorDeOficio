@@ -30,6 +30,7 @@ import {
   specialLetterValidation,
   upperCaseValidation,
 } from './customValidator/passMatch-Validator';
+import { MessageConstants } from 'src/app/core/constants/message.constants';
 
 @Component({
   selector: 'app-new-password',
@@ -146,11 +147,11 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
 
           this.modalService
             .showDialog({
-              title: 'Falha!',
+              title: MessageConstants.ERROR_TITLE,
               message: (error =
                 error.error && error.error.message
                   ? error.error.message
-                  : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.'),
+                  : MessageConstants.ERROR_MESSAGE),
               feedback: 'error',
             })
             .afterClosed()
@@ -219,11 +220,11 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
       .pipe(
         catchError((error) => {
           this.modalService.showDialog({
-            title: 'Falha!',
+            title: MessageConstants.ERROR_TITLE,
             message: (error =
               error.error && error.error.message
                 ? error.error.message
-                : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.'),
+                : MessageConstants.ERROR_MESSAGE),
             feedback: 'error',
           });
           return throwError(error);
@@ -235,8 +236,8 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
       .subscribe(() => {
         this.modalService.showDialog({
           feedback: 'success',
-          title: 'Sucesso',
-          message: 'Senha alterada com sucesso!',
+          title: MessageConstants.SUCCESS_TITLE,
+          message: MessageConstants.SUCCESS_RESET_PASSWORD,
           onClick: () => {
             this.router.navigate(['/login']);
           },
