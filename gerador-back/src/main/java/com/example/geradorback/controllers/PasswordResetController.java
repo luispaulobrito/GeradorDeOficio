@@ -1,18 +1,18 @@
 package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.PasswordResetService;
-import com.example.geradorback.services.error.ConstantesUtil;
 import com.example.geradorback.services.records.RequestPasswordDTO;
 import com.example.geradorback.services.records.ResetPasswordRequestDTO;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/password-reset")
@@ -29,21 +29,13 @@ public class PasswordResetController {
 
     @GetMapping("/reset/{userId}/{resetToken}")
     public ResponseEntity verifyToken(@Validated @PathVariable String userId, @PathVariable String resetToken) {
-        if (passwordResetService.verifyToken(userId, resetToken)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", ConstantesUtil.ERROR_TITLE, "message", ConstantesUtil.TOKEN_INVALIDO));
-        }
+        passwordResetService.verifyToken(userId, resetToken);
+        return ResponseEntity.ok().build();
     }
     @PostMapping("/reset")
     public ResponseEntity resetPassword(@RequestBody @Validated ResetPasswordRequestDTO resetRequest) {
-        if (passwordResetService.resetPassword(resetRequest.token(), resetRequest.userId(), resetRequest.password())) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", ConstantesUtil.ERROR_TITLE, "message", ConstantesUtil.ERRO_REDEFINIR_SENHA));
-        }
+        passwordResetService.resetPassword(resetRequest);
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -43,5 +44,21 @@ public class UserService {
     public RegisterDTO findByLogin(RequestPasswordDTO requestPasswordDTO) {
         User user = userRepository.findByLogin(requestPasswordDTO.login());
         return userMapper.toDto(user);
+    }
+    public RegisterDTO findById(String userId) throws NegocioException{
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return userMapper.toDto(user.get());
+        }
+        throw  new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.USUARIO_NAO_ENCONTRADO);
+    }
+    public void updateUser(RegisterDTO registerDTO) throws NegocioException {
+        userRepository.findById(registerDTO.id())
+                .map(user -> {
+                    User userUpdated = userMapper.toEntity(registerDTO);
+                    userUpdated.setId(user.getId());
+                    return userMapper.toDto(userRepository.save(userUpdated));
+                })
+                .orElseThrow(() -> new NegocioException(ConstantesUtil.ERROR_TITLE,ConstantesUtil.USUARIO_NAO_ENCONTRADO));
     }
 }
