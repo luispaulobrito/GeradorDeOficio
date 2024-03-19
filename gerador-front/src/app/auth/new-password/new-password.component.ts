@@ -16,8 +16,6 @@ import {
   Subscription,
   catchError,
   finalize,
-  of,
-  switchMap,
   throwError,
 } from 'rxjs';
 
@@ -36,14 +34,6 @@ import { MessageConstants } from 'src/app/core/constants/message.constants';
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
   styleUrls: ['./new-password.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    NgIf,
-    MatIconModule,
-  ],
 })
 export class NewPasswordComponent implements OnDestroy, OnInit {
   public formNewPassword: FormGroup;

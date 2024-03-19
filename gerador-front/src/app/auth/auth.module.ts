@@ -11,23 +11,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordForgotComponent } from './password-forgot/password-forgot.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
-
+import { PasswordErrorsComponent } from '../theme/components/password-errors/password-errors.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     PasswordForgotComponent,
+    NewPasswordComponent,
+    PasswordErrorsComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    NewPasswordComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
-  ]
+  ],
 })
 export class AuthModule { }
