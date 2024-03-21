@@ -16,8 +16,6 @@ import {
   Subscription,
   catchError,
   finalize,
-  of,
-  switchMap,
   throwError,
 } from 'rxjs';
 
@@ -30,19 +28,12 @@ import {
   specialLetterValidation,
   upperCaseValidation,
 } from './customValidator/passMatch-Validator';
+import { MessageConstants } from 'src/app/core/constants/message.constants';
 
 @Component({
   selector: 'app-new-password',
   templateUrl: './new-password.component.html',
   styleUrls: ['./new-password.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    NgIf,
-    MatIconModule,
-  ],
 })
 export class NewPasswordComponent implements OnDestroy, OnInit {
   public formNewPassword: FormGroup;
@@ -127,9 +118,7 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
   private loadScreen(): void {
     this.loaderService.setLoading(true);
 
-    of(null)
-      .pipe(
-        switchMap(() => this.resetPassApi.tokenVerify(this.userId, this.token)),
+    this.resetPassApi.tokenVerify(this.userId, this.token).pipe(
         catchError((error) => {
           return throwError(error);
         }),
@@ -146,11 +135,11 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
 
           this.modalService
             .showDialog({
-              title: 'Falha!',
+              title: MessageConstants.ERROR_TITLE,
               message: (error =
                 error.error && error.error.message
                   ? error.error.message
-                  : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.'),
+                  : MessageConstants.ERROR_MESSAGE),
               feedback: 'error',
             })
             .afterClosed()
@@ -219,11 +208,11 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
       .pipe(
         catchError((error) => {
           this.modalService.showDialog({
-            title: 'Falha!',
+            title: MessageConstants.ERROR_TITLE,
             message: (error =
               error.error && error.error.message
                 ? error.error.message
-                : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.'),
+                : MessageConstants.ERROR_MESSAGE),
             feedback: 'error',
           });
           return throwError(error);
@@ -235,8 +224,8 @@ export class NewPasswordComponent implements OnDestroy, OnInit {
       .subscribe(() => {
         this.modalService.showDialog({
           feedback: 'success',
-          title: 'Sucesso',
-          message: 'Senha alterada com sucesso!',
+          title: MessageConstants.SUCCESS_TITLE,
+          message: MessageConstants.SUCCESS_RESET_PASSWORD,
           onClick: () => {
             this.router.navigate(['/login']);
           },

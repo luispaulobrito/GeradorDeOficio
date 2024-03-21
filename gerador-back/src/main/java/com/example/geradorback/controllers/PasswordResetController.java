@@ -1,7 +1,6 @@
 package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.PasswordResetService;
-import com.example.geradorback.services.error.ConstantesUtil;
 import com.example.geradorback.services.dto.RequestPasswordDTO;
 import com.example.geradorback.services.dto.ResetPasswordRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,12 +8,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/password-reset")
@@ -30,7 +31,7 @@ public class PasswordResetController {
     })
     @PostMapping("/forgot")
     public ResponseEntity<Boolean> initiatePasswordReset(@RequestBody @Validated RequestPasswordDTO requestPasswordDTO) throws MessagingException {
-        passwordResetService.initiatePasswordReset(requestPasswordDTO.login());
+        passwordResetService.initiatePasswordReset(requestPasswordDTO);
         return ResponseEntity.ok().build();
     }
 
@@ -41,12 +42,8 @@ public class PasswordResetController {
     })
     @GetMapping("/reset/{userId}/{resetToken}")
     public ResponseEntity verifyToken(@Validated @PathVariable String userId, @PathVariable String resetToken) {
-        if (passwordResetService.verifyToken(userId, resetToken)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", ConstantesUtil.ERROR_TITLE, "message", ConstantesUtil.TOKEN_INVALIDO));
-        }
+        passwordResetService.verifyToken(userId, resetToken);
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Redefinir senha")
@@ -56,12 +53,8 @@ public class PasswordResetController {
     })
     @PostMapping("/reset")
     public ResponseEntity resetPassword(@RequestBody @Validated ResetPasswordRequestDTO resetRequest) {
-        if (passwordResetService.resetPassword(resetRequest.token(), resetRequest.userId(), resetRequest.password())) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("error", ConstantesUtil.ERROR_TITLE, "message", ConstantesUtil.ERRO_REDEFINIR_SENHA));
-        }
+        passwordResetService.resetPassword(resetRequest);
+        return ResponseEntity.ok().build();
     }
 
 }
