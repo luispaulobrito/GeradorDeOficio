@@ -50,6 +50,7 @@ public class PasswordResetService {
         return true;
     }
 
+
     public boolean verifyToken(String userId, String resetToken) throws NegocioException {
         RegisterDTO user = Optional.ofNullable(userService.findById(userId)).orElseThrow(() -> new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.TOKEN_INVALIDO));
             PasswordResetToken passwordResetToken = tokenRepository.findByToken(resetToken);
