@@ -51,9 +51,7 @@ public class PasswordResetService {
     }
 
     public boolean verifyToken(String userId, String resetToken) throws NegocioException {
-        Optional<RegisterDTO> userOptional = Optional.ofNullable(userService.findById(userId));
-        if (userOptional.isPresent()) {
-            RegisterDTO user = userOptional.get();
+        RegisterDTO user = Optional.ofNullable(userService.findById(userId)).orElseThrow(() -> new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.TOKEN_INVALIDO));
             PasswordResetToken passwordResetToken = tokenRepository.findByToken(resetToken);
             if (Objects.nonNull(passwordResetToken) &&
                     passwordResetToken.getUser().getId().equals(user.id()) &&
@@ -61,7 +59,6 @@ public class PasswordResetService {
                     !passwordResetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
                 return true;
             }
-        }
         throw new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.TOKEN_INVALIDO);
     }
 
