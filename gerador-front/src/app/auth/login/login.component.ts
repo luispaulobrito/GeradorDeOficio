@@ -7,6 +7,7 @@ import { IResponseLogin } from 'src/app/core/models/IResponseLogin';
 import { Router } from '@angular/router';
 import { AuthAPI } from 'src/app/core/api/auth.api';
 import { finalize } from 'rxjs';
+import { EmailService } from 'src/app/core/services/email.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent {
     private authAPI: AuthAPI,
     private loaderService: LoaderService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private emailService: EmailService,
   ) {
     this.loginForm = new FormGroup({
       login: new FormControl('', [
@@ -49,7 +51,7 @@ export class LoginComponent {
     }
     
     this.loaderService.setLoading(true);
-
+    this.storageService.removeItem('token');  
     this.authAPI
       .login(this.loginForm.value)
       .pipe(
@@ -72,5 +74,10 @@ export class LoginComponent {
               : 'Ocorreu um erro na comunicação com o servidor. Tente novamente.';
         }
       );
+  }
+
+  public forgotPassword(): void {
+    this.emailService.setEmail(this.loginForm.get('login')?.value);
+    this.router.navigate(['/auth/password-forgot']);
   }
 }

@@ -47,7 +47,7 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         }catch (JWTCreationException exception){
-            throw new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.ERRO_VALIDAR_TOKEN);
+            throw new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.TOKEN_INVALIDO);
         }
     }
 
