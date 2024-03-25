@@ -2,10 +2,13 @@ package com.example.geradorback.controllers;
 
 import com.example.geradorback.services.PasswordResetService;
 import com.example.geradorback.services.records.RequestPasswordDTO;
+import com.example.geradorback.services.records.ResetPasswordRequestDTO;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +27,15 @@ public class PasswordResetController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/reset/{userId}/{resetToken}")
+    public ResponseEntity verifyToken(@Validated @PathVariable String userId, @PathVariable String resetToken) {
+        passwordResetService.verifyToken(userId, resetToken);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping("/reset")
+    public ResponseEntity resetPassword(@RequestBody @Validated ResetPasswordRequestDTO resetRequest) {
+        passwordResetService.resetPassword(resetRequest);
+        return ResponseEntity.ok().build();
+    }
 
 }

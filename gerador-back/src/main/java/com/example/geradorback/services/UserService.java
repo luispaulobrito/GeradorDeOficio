@@ -44,4 +44,16 @@ public class UserService {
         User user = userRepository.findByLogin(requestPasswordDTO.login());
         return userMapper.toDto(user);
     }
+    public RegisterDTO findById(String userId) throws NegocioException{
+        User user = userRepository.findById(userId).orElseThrow(() -> new NegocioException(ConstantesUtil.ERROR_TITLE, ConstantesUtil.USUARIO_NAO_ENCONTRADO));
+        return userMapper.toDto(user);
+    }
+    public void updateUser(RegisterDTO registerDTO) throws NegocioException {
+        userRepository.findById(registerDTO.id())
+                .map(user -> {
+                    User userUpdated = userMapper.toEntity(registerDTO);
+                    return userMapper.toDto(userRepository.save(userUpdated));
+                })
+                .orElseThrow(() -> new NegocioException(ConstantesUtil.ERROR_TITLE,ConstantesUtil.USUARIO_NAO_ENCONTRADO));
+    }
 }

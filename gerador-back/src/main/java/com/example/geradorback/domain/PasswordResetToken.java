@@ -39,9 +39,11 @@ public class PasswordResetToken {
 
     private boolean utilized;
 
-    public PasswordResetToken() {
+    public PasswordResetToken() {}
+    public PasswordResetToken(User user) {
+        this.user = user;
         this.token = UUID.randomUUID().toString();
-        this.expiryDate = LocalDateTime.now().plusHours(24);
+        this.expiryDate = LocalDateTime.now().plusHours(1);
         this.utilized = false;
     }
 

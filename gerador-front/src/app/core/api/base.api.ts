@@ -35,7 +35,16 @@ export class BaseAPI {
    */
   public post<TD, TR>(data: TD): Observable<TR> {
     const headers = this.setHeaders();
-
     return this.httpClient.post<TR>(this.apiUrl, data, { headers });
+  }
+
+  /**
+   * Realiza uma requisição HTTP GET para a URL da API.
+   * @param params String contendo alguns parametros caso necessário para rotas GET
+   * @returns Um Observable com a resposta da API no resolve se a requisição for bem-sucedida, ou uma mensagem de erro em caso de falha.
+   */
+  public get<TR>(params = ''): Observable<TR> {
+    const headers = this.setHeaders();
+    return this.httpClient.get<TR>(this.apiUrl + params, { headers });
   }
 }
