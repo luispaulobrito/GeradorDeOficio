@@ -1,0 +1,191 @@
+@import "../../../theme/styles/theme.scss";
+@import "../../../theme/styles/mixins.scss";
+
+.burguer {
+  display: none;
+
+  @include responsive(sm) {
+    display: flex;
+    border: 1px solid $white;
+  }
+}
+
+.toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  @include responsive(sm) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &.is-open {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.logo-menu {
+  @include responsive(sm) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+
+    &.is-open {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-start;
+    }
+  }
+}
+
+.menu-container {
+  background-color: rgba($color: #000000, $alpha: 0.69);
+  padding: 30px;
+}
+
+.menu-container ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin-left: 10px;
+  padding: 0;
+
+  @include responsive(sm) {
+    display: none;
+
+    &.is-open {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.menu-container ul li:last-child {
+  display: none;
+
+  @include responsive(sm) {
+    display: block;
+  }
+}
+
+.menu-container ul li {
+  display: inline;
+  margin-right: 10px;
+  font-size: 16px;
+
+  @include responsive(sm) {
+    padding-bottom: 8px;
+  }
+}
+
+.menu-container ul li a {
+  color: $white;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.menu-link {
+  padding-right: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-link::after {
+  content: " ";
+  width: 0%;
+  height: 2px;
+  background-color: $white;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  transition: 0.5s ease-in-out;
+  @include responsive(sm) {
+    bottom: 0;
+  }
+}
+
+.menu-link:hover::after {
+  width: 100%;
+}
+
+.menu-container ul li.logout {
+  float: right;
+}
+
+.menu-logout-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @include responsive(sm) {
+    display: flex;
+    justify-content: flex-end;
+    width: 0;
+  }
+}
+
+.logout-button {
+  display: inline-block;
+  position: relative;
+
+  @include responsive(sm) {
+    display: none;
+  }
+}
+
+.button-content {
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.logout-image {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s;
+}
+
+.logout-text {
+  color: $white;
+  text-decoration: none;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.logout-button:hover .button-content {
+  width: 32px;
+}
+
+.logout-button:hover .logout-image {
+  opacity: 0;
+}
+
+.logout-button:hover .logout-text {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.logo {
+  border: solid 2px $white;
+  padding: 5px;
+  color: $white;
+  margin: 0;
+}

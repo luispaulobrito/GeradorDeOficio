@@ -1,0 +1,30 @@
+<nav class="menu-container">
+  <div class="toggle">
+    <div class="logo-menu">
+      <p class="logo">O&M</p>
+    </div>
+
+    <div class="menu-logout-container">
+      <button class="burguer" (click)="toggleMenu()" tabindex="0">
+        <i class="material-icons">{{ isMenuOpen ? "close" : "menu" }}</i>
+      </button>
+      <ul class="menu" [class.is-open]="isMenuOpen">
+        <li class="menu-link"><a routerLink="home">Início</a></li>
+        <li class="menu-link"><a routerLink="new-letter">Novo</a></li>
+        <li class="menu-link"><a routerLink="list-letter">Listar</a></li>
+        <li class="menu-link"><a href="#" (click)="logout()">Sair</a></li>
+      </ul>
+
+      <a class="logout-button" href="#" (click)="logout()">
+        <div class="button-content">
+          <img
+            src="../../../../assets/images/arrow-right-from-bracket-solid.svg"
+            alt="Sair"
+            class="logout-image"
+          />
+          <span class="logout-text">Sair</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>
