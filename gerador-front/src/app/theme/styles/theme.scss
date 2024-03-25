@@ -113,4 +113,7 @@ body {
       font-size: 14px;
     }
   }
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+    padding-left: 16px;
+  }
 }
