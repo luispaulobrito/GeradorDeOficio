@@ -1,1 +1,64 @@
-<p>new-letter works!</p>
+<form [formGroup]="newDocumentForm" class="form-container">
+  <div class="document-type-date-container">
+    <p-dropdown
+      class="document-type"
+      formControlName="documentType"
+      optionLabel="value"
+      placeholder="Selecione o tipo do documento"
+      [options]="documentTypeEnum | keyvalue"
+    ></p-dropdown>
+    <p-calendar
+      formControlName="selectedDate"
+      [showIcon]="true"
+      dateFormat="dd/mm/yy"
+    ></p-calendar>
+  </div>
+  <div class="from-to-container">
+    <input
+      type="text"
+      pInputText
+      formControlName="from"
+      class="from"
+      placeholder="De"
+    />
+    <input
+      class="from-position"
+      type="text"
+      pInputText
+      formControlName="fromPosition"
+      placeholder="Cargo de"
+    />
+    <input
+      type="text"
+      pInputText
+      formControlName="to"
+      class="to"
+      placeholder="Para"
+    />
+    <input
+      class="to-position"
+      type="text"
+      pInputText
+      formControlName="toPosition"
+      placeholder="Cargo para"
+    />
+  </div>
+  <input
+    class="subject"
+    type="text"
+    pInputText
+    formControlName="subject"
+    placeholder="Assunto"
+  />
+  <div class="p-float-label text-container">
+    <textarea
+      id="float-input"
+      class="text"
+      rows="5"
+      cols="30"
+      placeholder="Digite seu texto aqui"
+      pInputTextarea
+    ></textarea>
+  </div>
+  <p-button label="Salvar e Imprimir" styleClass="p-button-success"></p-button>
+</form>

@@ -1,0 +1,44 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.document-type-date-container {
+  display: flex;
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.document-type {
+  padding-right: 1rem;
+}
+
+.from-to-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+}
+
+.from,
+.from-position,
+.to,
+.to-position {
+  width: 20rem;
+}
+
+.subject {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.text-container {
+  padding-bottom: 1rem;
+}
+
+.text {
+  width: 100%;
+  height: 20rem;
+}
